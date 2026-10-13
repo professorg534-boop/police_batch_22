@@ -1,12 +1,13 @@
 <?php
 mysqli_report(MYSQLI_REPORT_OFF);
 
-$host   = "sql307.infinityfree.com";
-$user   = "if0_43016584";
-$pass   = "0EENhs5Z4LOBm"; // ⚠️ এখানে আসল VPanel পাসওয়ার্ড দিন
-$dbname = "if0_43016584_policebatch22";
+$host   = "maglev.proxy.rlwy.net";
+$user   = "root";
+$pass   = "QlQaYatJfbeFwpliRqXwbEpVpuTkBkav"; 
+$dbname = "railway";
+$port   = 29480;
 
-$conn = @mysqli_connect($host, $user, $pass, $dbname);
+$conn = @mysqli_connect($host, $user, $pass, $dbname, $port);
 
 if (!$conn) {
     error_log("Database connection failed: " . mysqli_connect_error());
