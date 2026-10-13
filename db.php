@@ -1,13 +1,18 @@
 <?php
-mysqli_report(MYSQLI_REPORT_OFF);
+// mysqli_report বন্ধ রাখা হলো যেন Server Error না আসে
+if (function_exists('mysqli_report')) {
+    mysqli_report(MYSQLI_REPORT_OFF);
+}
 
-$host   = "maglev.proxy.rlwy.net";
-$user   = "root";
-$pass   = "QlQaYatJfbeFwpliRqXwbEpVpuTkBkav"; 
-$dbname = "railway";
-$port   = 29480;
+// Railway Environment Variables অথবা fallback hardcoded credentials
+$host   = getenv('MYSQLHOST') ?: "maglev.proxy.rlwy.net";
+$user   = getenv('MYSQLUSER') ?: "root";
+$pass   = getenv('MYSQLPASSWORD') ?: "QlQaYatJfbeFwpliRqXwbEpVpuTkBkav"; 
+$dbname = getenv('MYSQLDATABASE') ?: "railway";
+$port   = getenv('MYSQLPORT') ?: 29480;
 
-$conn = @mysqli_connect($host, $user, $pass, $dbname, $port);
+// Database Connection
+$conn = @mysqli_connect($host, $user, (string)$pass, $dbname, (int)$port);
 
 if (!$conn) {
     error_log("Database connection failed: " . mysqli_connect_error());
