@@ -1,0 +1,21 @@
+<?php
+mysqli_report(MYSQLI_REPORT_OFF);
+
+$host   = "sql307.infinityfree.com";
+$user   = "if0_43016584";
+$pass   = "0EENhs5Z4LOBm"; // ⚠️ এখানে আসল VPanel পাসওয়ার্ড দিন
+$dbname = "if0_43016584_policebatch22";
+
+$conn = @mysqli_connect($host, $user, $pass, $dbname);
+
+if (!$conn) {
+    error_log("Database connection failed: " . mysqli_connect_error());
+    http_response_code(500);
+    die("<div style='font-family:sans-serif; background:#0f172a; color:#f87171; padding:40px; text-align:center;'>
+            <h2>Service Temporarily Unavailable</h2>
+            <p style='color:#94a3b8; margin-top:10px;'>Please try again in a moment. If this continues, contact the system administrator.</p>
+         </div>");
+}
+
+mysqli_set_charset($conn, "utf8mb4");
+?>
